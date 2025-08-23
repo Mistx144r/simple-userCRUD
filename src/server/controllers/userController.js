@@ -1,5 +1,7 @@
 import * as userService from '../services/userService.js';
 
+//CRUD BASICO
+
 // http://localhost:3000/users
 export async function getAllUsers(req, res) {
     try {
@@ -59,5 +61,18 @@ export async function deleteUser(req, res) {
         res.status(410).send();
     } catch (error) {
         res.status(500).json({ message: error.message });
+    }
+}
+
+//FUNCOES LOGIN
+export async function loginUser(req, res) {
+    try {
+        const token = await userService.loginUser(req.body.email, req.body.senha);
+        res.status(200).json({ token: token });
+    } catch (error) {
+        if (error.message === 'Credenciais inválidas.') {
+            return res.status(401).json({ message: error.message });
+        }
+        res.status(500).json({ message: "Erro interno do servidor." });
     }
 }

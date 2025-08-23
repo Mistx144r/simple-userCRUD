@@ -1,6 +1,8 @@
 import User from '../entities/user.js';
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
+//CRUD BASICO
 export async function getAllUsers() {
     return await User.findAll();
 }
@@ -62,4 +64,32 @@ export async function deleteUser(id) {
     }
     await user.destroy();
     return user;
+}
+
+//FUNCOES DE LOGIN
+export async function loginUser(email, plainTextPassword) {
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+        throw new Error('Credenciais inválidas.');
+    }
+
+    const isMatch = await bcrypt.compare(plainTextPassword, user.senha);
+    if (!isMatch) {
+        throw new Error('Credenciais inválidas.');
+    }
+
+    const payload = {
+        id: user.id,
+        nome: user.nome
+    };
+
+    const token = jwt.sign(
+        payload,
+        process.env.JWT_SECRET,
+        { expiresIn: '1h' }
+    );
+
+    const { senha, ...userData } = user.get({ plain: true });
+
+    return { user: userData, token: token };
 }
