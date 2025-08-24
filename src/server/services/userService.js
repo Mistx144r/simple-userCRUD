@@ -80,7 +80,8 @@ export async function loginUser(email, plainTextPassword) {
 
     const payload = {
         id: user.id,
-        nome: user.nome
+        nome: user.nome,
+        email: user.email
     };
 
     const token = jwt.sign(

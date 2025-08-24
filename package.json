@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "devmon": "nodemon src/server/index.js",
+    "devmon": "nodemon src/server/main.js",
     "devhost": "vite --host",
     "dev": "vite",
     "build": "vite build",
@@ -19,6 +19,7 @@
     "express": "^5.1.0",
     "expressjs": "^1.0.1",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.541.0",
     "mysql2": "^3.14.3",
     "nodemon": "^3.1.10",
