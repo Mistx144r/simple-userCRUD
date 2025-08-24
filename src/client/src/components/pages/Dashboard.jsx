@@ -29,7 +29,6 @@ const Dashboard = () => {
         const response = await axios.get(apiUrl, {
           headers: { Authorization: `Bearer ${userToken}` },
         });
-        console.log(response);
         setUserData(response.data);
       } catch (error) {
         console.log(error);
