@@ -16,10 +16,7 @@ function LoginPage() {
     setLoginDebounce(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/users/login",
-        loginData
-      );
+      const response = await axios.post("/users/login", loginData);
       localStorage.setItem("token", JSON.stringify(response.data));
       navigate("/dashboard");
       setErrorMessage("");
@@ -57,6 +54,7 @@ function LoginPage() {
               type="email"
               placeholder="lucasdev@devs.com.br"
               onChange={handleLoginDataChange}
+              maxLength={80}
             ></input>
             <input
               name="senha"
@@ -64,6 +62,7 @@ function LoginPage() {
               type="password"
               placeholder="********"
               onChange={handleLoginDataChange}
+              max={100}
             ></input>
           </div>
 

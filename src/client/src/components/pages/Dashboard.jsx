@@ -25,7 +25,7 @@ const Dashboard = () => {
 
       try {
         const userId = authData.token.user.id;
-        const apiUrl = `http://localhost:3000/users/${userId}`;
+        const apiUrl = `/users/${userId}`;
         const response = await axios.get(apiUrl, {
           headers: { Authorization: `Bearer ${userToken}` },
         });
@@ -42,7 +42,7 @@ const Dashboard = () => {
       const userToken = authData.token.token;
 
       try {
-        const apiUrl = "http://localhost:3000/users";
+        const apiUrl = "/users";
         const response = await axios.get(apiUrl, {
           headers: { Authorization: `Bearer ${userToken}` },
         });
@@ -110,7 +110,7 @@ const Dashboard = () => {
         <div className="flex flex-col p-3 font-semibold h-full rounded-lg overflow-hidden">
           <nav className="flex items-center justify-between gap-4">
             <h1 className="font-bold text-2xl">
-              Seja Bem Vindo! {userData.nome} 🎉.
+              Seja Bem Vindo! {userData.nome}.
             </h1>
             <input
               type="text"

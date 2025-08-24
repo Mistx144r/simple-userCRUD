@@ -58,7 +58,7 @@ export async function deleteUser(req, res) {
         if (!user) {
             return res.status(404).json({ message: 'Usuário não encontrado.' });
         }
-        res.status(410).send();
+        res.status(204).send();
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
